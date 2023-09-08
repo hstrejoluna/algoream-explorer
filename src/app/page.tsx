@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <p>Algoream Explorer<br/><br/><strong>By HS Trejo Luna</strong></p>
-      
     </main>
   )
 }
