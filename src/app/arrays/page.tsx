@@ -1,19 +1,29 @@
 "use client";
+
+import {MyArray} from "../lib/customArray";
 import styles from "./Arrays.module.scss";
+
 import {useState} from "react";
 
-const photos = [
-  "/assets/images/01.jpeg",
-  "/assets/images/02.jpeg",
-  "/assets/images/03.jpeg",
-  "/assets/images/04.jpeg",
-];
+
+const photos = new MyArray<string>();
+
+photos.push("/assets/images/01.jpeg");
+photos.push("/assets/images/02.jpeg");
+photos.push("/assets/images/03.jpeg");
+photos.push("/assets/images/04.jpeg");
+
+// const photos = [
+//   ,
+//   "/assets/images/02.jpeg",
+//   "/assets/images/03.jpeg",
+//   "/assets/images/04.jpeg",
+// ];
 
 function PhotoGallery() {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
   return (
-    
     <section className={styles.ArraySectionWrapper}>
       <div className={styles.gallery}>
         {photos.map((photo, index) => (
