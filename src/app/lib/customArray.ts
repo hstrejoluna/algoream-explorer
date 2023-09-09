@@ -39,5 +39,32 @@ export class MyArray<T>{
     return this._length;
   }
 
+  // Custom map that works for ReactNode Type, transforms to native array only for practice
+  map<U>(callback: (value: T, index: number, array: MyArray<T>) => U): U[] {
+    const result: U[] = [];
+    for (let i = 0; i < this._length; i++) {
+        const value = this.get(i);
+        if (value !== undefined) {
+            const newValue = callback(value, i, this);
+            result.push(newValue);
+        }
+    }
+    return result;
+}
+
+
+  // Custom classic map
+  mapClassic<U>(callback: (value: T, index: number, array: MyArray<T>) => U): MyArray<U> {
+    const newArray = new MyArray<U>();
+    for (let i = 0; i < this._length; i++) {
+      const value = this.get(i);
+      if (value !== undefined) { // Type guard
+        const newValue = callback(value, i, this);
+        newArray.push(newValue);
+    }
+    }
+    return newArray;
+  }
+
 
 }

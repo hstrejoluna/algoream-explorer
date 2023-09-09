@@ -5,14 +5,6 @@ import styles from "./Arrays.module.scss";
 
 import {useState} from "react";
 
-
-const photos = new MyArray<string>();
-
-photos.push("/assets/images/01.jpeg");
-photos.push("/assets/images/02.jpeg");
-photos.push("/assets/images/03.jpeg");
-photos.push("/assets/images/04.jpeg");
-
 // const photos = [
 //   ,
 //   "/assets/images/02.jpeg",
@@ -21,15 +13,21 @@ photos.push("/assets/images/04.jpeg");
 // ];
 
 function PhotoGallery() {
+  const photos = new MyArray<string>();
+
+  photos.push("/assets/images/01.jpeg");
+  photos.push("/assets/images/02.jpeg");
+  photos.push("/assets/images/03.jpeg");
+  photos.push("/assets/images/04.jpeg");
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
   return (
     <section className={styles.ArraySectionWrapper}>
       <div className={styles.gallery}>
-        {photos.map((photo, index) => (
+        {photos.map((photoUrl, index) => (
           <img
             key={index}
-            src={photo}
+            src={photoUrl}
             alt={`Photo ${index}`}
             className={styles.gallery__photo}
           />
@@ -44,14 +42,14 @@ function PhotoGallery() {
         </button>
 
         <img
-          src={photos[currentPhotoIndex]}
+          src={photos.get(currentPhotoIndex) || ""} // Use the get method to retrieve the photo URL
           alt={`Photo ${currentPhotoIndex}`}
           className={styles.viewer__photo}
         />
 
         <button
           onClick={() => setCurrentPhotoIndex((prev) => prev + 1)}
-          disabled={currentPhotoIndex === photos.length - 1}
+          disabled={currentPhotoIndex === photos.length - 1} // Use the length property to check the last photo
         >
           Next
         </button>
